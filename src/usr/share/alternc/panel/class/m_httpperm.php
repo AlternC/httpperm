@@ -79,8 +79,8 @@ class m_httpperm {
      * @return array Retourne le tableau des comptes 
      */
     function get_list() {
-      global $db, $err, $cuid, $admin;
-        $err->log("http", "get_list");
+      global $db, $msg, $cuid, $admin;
+        $msg->log("http", "get_list");
         $r = array();
 	$param=array();
 	if ($admin->enabled) {
@@ -104,8 +104,8 @@ class m_httpperm {
     /* ----------------------------------------------------------------- */
 
     function edit($id, $name) {
-        global $db, $err, $cuid, $admin;
-        $err->log("httpperm", "edit", $id);
+        global $db, $msg, $cuid, $admin;
+        $msg->log("httpperm", "edit", $id);
 
 	$param=array($id);
 	if ($admin->enabled) {
@@ -117,7 +117,7 @@ class m_httpperm {
         $db->query("SELECT count(*) AS cnt FROM http_permission WHERE id= ? $sql;", $param);
         $db->next_record();
         if (!$db->f("cnt")) {
-            $err->raise("httpperm", _("This HTTP Permission does not exist"));
+            $msg->raise("ERROR","httpperm", _("This HTTP Permission does not exist"));
             return false;
         }
 
@@ -125,7 +125,7 @@ class m_httpperm {
         $db->query("SELECT COUNT(*) AS cnt FROM http_permission WHERE id!= ? $sql AND name= ?;", $param);
         $db->next_record();
         if ($db->f("cnt")) {
-            $err->raise("httpperm", _("This http_permission already exists"));
+            $msg->raise("ERROR","httpperm", _("This http_permission already exists"));
             return false;
         }
 	// delete cached permission blocs: 
@@ -137,8 +137,8 @@ class m_httpperm {
 
     /* ----------------------------------------------------------------- */
     function delete($id) {
-        global $db, $err, $cuid;
-        $err->log("httpperm", "delete", $id);
+        global $db, $msg, $cuid;
+        $msg->log("httpperm", "delete", $id);
 	$param=array($id);
 	if ($admin->enabled) {
 	  $sql="";
@@ -149,7 +149,7 @@ class m_httpperm {
         $db->query("SELECT count(*) AS cnt FROM http_permission WHERE id= ? $sql;", $param);
         $db->next_record();
         if (!$db->f("cnt")) {
-            $err->raise("httpperm", _("This HTTP Permission does not exist"));
+            $msg->raise("ERROR","httpperm", _("This HTTP Permission does not exist"));
             return false;
         }
         $db->query("DELETE FROM http_permission_bloc WHERE permid= ? ;", array($id));
@@ -159,8 +159,8 @@ class m_httpperm {
 
     /* ----------------------------------------------------------------- */
     function add($name) {
-        global $db, $err, $cuid, $admin;
-        $err->log("httpperm", "add", $id);
+        global $db, $msg, $cuid, $admin;
+        $msg->log("httpperm", "add", $id);
 
 	$param=array($name);
 	if ($admin->enabled) {
@@ -172,7 +172,7 @@ class m_httpperm {
         $db->query("SELECT COUNT(*) AS cnt FROM http_permission WHERE name= ? $sql;", $param);
         $db->next_record();
         if ($db->f("cnt")) {
-            $err->raise("httpperm", _("This http_permission already exists"));
+            $msg->raise("ERROR","httpperm", _("This http_permission already exists"));
             return false;
         }
 	$db->query("INSERT INTO http_permission SET name= ? , uid=?;", array($name,$cuid));
@@ -185,8 +185,8 @@ class m_httpperm {
      *
      */
     function get_log() {
-      global $db, $err, $cuid, $admin;
-      $err->log("httpperm", "get_log", $id);
+      global $db, $msg, $cuid, $admin;
+      $msg->log("httpperm", "get_log", $id);
       
       $param=array();
       if ($admin->enabled) {
@@ -209,8 +209,8 @@ class m_httpperm {
      * @access private
      */
     function alternc_del_member() {
-        global $db, $err, $cuid;
-        $err->log("httpperm", "alternc_del_member");
+        global $db, $msg, $cuid;
+        $msg->log("httpperm", "alternc_del_member");
         $db->query("DELETE http_permission_bloc FROM http_permission, http_permission_bloc WHERE uid= ? AND http_permission.id=http_permission_bloc.permid;", array($cuid));
         $db->query("DELETE FROM http_permission WHERE uid= ?", array($cuid));
         return true;
@@ -225,8 +225,8 @@ class m_httpperm {
      * @access private
      */
     function hook_quota_get() {
-        global $db, $err, $cuid;
-        $err->log("httpperm", "getquota");
+        global $db, $msg, $cuid;
+        $msg->log("httpperm", "getquota");
         $q = Array("name" => "httpperm", "description" => _("HTTP Permissions"), "used" => 0);
         return $q;
     }
