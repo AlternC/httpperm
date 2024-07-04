@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f "/run/alternc/http-ulog.pid" -a -d "/proc/$(cat /run/alternc/http-ulog.pid)" ]
+if [ -f "/run/alternc/http-ulog.pid" -a -d "/proc/$(cat /run/alternc/http-ulog.pid 2>/dev/null)" ]
 then
     exit
 fi
