@@ -1,0 +1,20 @@
+Source: alternc-httpperm
+Section: admin
+Priority: optional
+Maintainer: AlternC Team <dev@alternc.org>
+Build-Depends: debhelper (>= 8)
+Standards-Version: 3.9.8
+
+Package: alternc-httpperm
+Priority: optional
+Section: admin
+Architecture: all
+Depends: alternc (>= 3.1), alternc (< 3.5), apache2 (>= 2.4), iptables, ipset
+Description: PHP-httpperm  for AlternC
+ AlternC is a mutualized hosting software manager for Linux.
+ It allows you to manage your websites, domains, ftp, emails, aliases,
+ web statistics, mailing-lists, etc.
+ .
+ This package is an optional module to manage OUTGOING http/https filtering/logging
+ .
+ More information on https://www.alternc.com/

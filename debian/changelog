@@ -1,0 +1,7 @@
+alternc-httpperm (0.0.1) stretch buster; urgency=medium
+
+  * False package version
+  * Version created only to follow git history
+  * Start nightly build from a stable version
+
+ -- Benjamin Sonntag <benjamin@sonntag.fr>  Thu, 10 Aug 2017 10:36:00 +0200
