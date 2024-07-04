@@ -1,3 +1,9 @@
+alternc-httpperm (0.0.2) stretch buster; urgency=medium
+
+  * Remove alternc 3.3 compatibily
+
+ -- Camille Lafitte <alternc@webelys.com>  Thu, 4 Jul 2024 18:06:00 +0200
+
 alternc-httpperm (0.0.1) stretch buster; urgency=medium
 
   * False package version
