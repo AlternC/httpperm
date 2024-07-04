@@ -4,6 +4,14 @@ an OUTGOING http/https filtering/logging interface
 for AlternC hosting control panel
 
 
+## Configuration
+
+Once pacakge retrieved and installed, you need to enable iptables rules
+* Check [httpperm-iptables-script.sh](httpperm-iptables-script.sh) script
+* Adapt it
+* Deploy it
+* Enjoy
+
 ## Get the package
 
 ### Build own package
