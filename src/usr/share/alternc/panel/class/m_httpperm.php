@@ -502,6 +502,9 @@ class m_httpperm {
     function process_logs() {
       global $db;
 
+      // cleanup all logs older than a week
+      $db->query("DELETE FROM http_log WHERE sdate < DATE_SUB(NOW(), INTERVAL 7 DAY);");
+
       // load the IP / blocs
       $allowedip=array();
       $db->query("SELECT permid, bloc FROM http_permission_bloc WHERE kind=".$this::KIND_IPV4." OR kind=".$this::KIND_IPV6.";");
@@ -509,7 +512,7 @@ class m_httpperm {
 	$allowedip[$db->f("bloc")]=$db->f("permid");
       }
       foreach($allowedip as $ip => $id) {
-	$db->query("UPDATE http_log SET permid=? WHERE dstip=? AND sdate > DATE_SUB(NOW(), INTERVAL 7 DAY) AND permid=0;",array($id, $ip) );
+	$db->query("UPDATE http_log SET permid=? WHERE dstip=? AND permid=0;",array($id, $ip) );
       }
       unset($allowedip);
 
