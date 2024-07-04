@@ -9,7 +9,7 @@ Package: alternc-httpperm
 Priority: optional
 Section: admin
 Architecture: all
-Depends: alternc (>= 3.1), alternc (< 3.5), apache2 (>= 2.4), iptables, ipset
+Depends: alternc (>= 3.5), apache2 (>= 2.4), iptables, ipset
 Description: PHP-httpperm  for AlternC
  AlternC is a mutualized hosting software manager for Linux.
  It allows you to manage your websites, domains, ftp, emails, aliases,

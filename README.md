@@ -35,10 +35,10 @@ You can get package from our official repository : [debian.alternc.org](https://
 
 ## Dependency
 
-You need an AlternC 3.3.* (only).
+You need at least an AlternC 3.5.
 
 ## How to use
 
-This package supports only AlternC 3.3.
+This package supports only minimal AlternC 3.5.
 Original code was set to AlternC 3.3 and could be deployed manually
 
